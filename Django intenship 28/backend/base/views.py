@@ -15,3 +15,7 @@ def index(request):
         }
     
     return render(request, 'index.html', context)
+
+def date(request,id):
+    data = Question.objects.get(id=id)
+    return render(request, 'time.html',{"data":data})

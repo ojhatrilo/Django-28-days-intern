@@ -16,7 +16,7 @@
     <hr>
     <center>
         {% for i,j in mylist%}
-            {{ i.question_text }}<br>
+            <a href="{% url 'date' i.id %}">{{ i.question_text }}</a><br>
             {{ j.choice_text }}<br><br>
         {% endfor %}
     </center>
