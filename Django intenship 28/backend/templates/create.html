@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Add New Question and Choice</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="question_text">Question Text:</label>
+    <input type="text" name="question_text"><br>
+    <label for="pub_date">Publication Date:</label>
+    <input type="datetime-local" name="pub_date"><br>
+    <label for="choice_text">Choice Text:</label>
+    <input type="text" name="choice_text"><br>
+    <label for="votes">Votes:</label>
+    <input type="number" name="votes" value="0"><br>
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

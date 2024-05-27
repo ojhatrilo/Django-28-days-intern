@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Edit Question and Choices</h1>
+  <form method="post">
+    {% csrf_token %}
+    <label for="question_text">Question Text:</label>
+    <input type="text" name="question_text" value="{{ question.question_text }}"><br>
+    <label for="pub_date">Publication Date:</label>
+    <input type="datetime-local" name="pub_date" value="{{ question.pub_date|date:"Y-m-d\TH:i" }}"><br>
+    
+    {% for choice in choices %}
+      <label for="choice_text">Choice Text:</label>
+      <input type="text" name="choice_text" value="{{ choice.choice_text }}"><br>
+      <label for="votes">Votes:</label>
+      <input type="number" name="votes" value="{{ choice.votes }}"><br>
+    {% endfor %}
+    
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

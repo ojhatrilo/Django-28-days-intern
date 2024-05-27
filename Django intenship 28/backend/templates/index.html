@@ -1,25 +1,15 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
+{% extends "base_generic.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-
-<body>
-    <h1>Hello World</h1>
-    <img src="https://img.freepik.com/free-vector/school-infographic_23-2147488673.jpg?w=740&t=st=1715836578~exp=1715837178~hmac=d88720e2fd1b0cccbfc9e5ecdf3184eb89ee71dcf230fcb8b880e84667764b31"
-        alt="no image" width="300px" height="300px">
-    <hr>
-    <center>
-        {% for i,j in mylist%}
-            <a href="{% url 'date' %}">{{ i.question_text }}</a><br>
-            {{ j.choice_text }}<br><br>
-        {% endfor %}
-    </center>
-</body>
-
-</html>
+{% block content %}
+  <h1>Questions and Choices</h1>
+  <ul>
+    {% for question, choice in mylist %}
+      <li>
+        {{ question.question_text }} (Published on: {{ question.pub_date }}) - {{ choice.choice_text }} (Votes: {{ choice.votes }})
+        <a href="{% url 'update' question.pk %}">Edit</a> |
+        <a href="{% url 'delete' question.pk %}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'create' %}">Add new question and choice</a>
+{% endblock %}
