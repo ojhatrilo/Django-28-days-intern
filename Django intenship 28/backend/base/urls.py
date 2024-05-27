@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('',views.index, name="hello"),
-    path('time/<id>', views.date, name="date")
+    path('time/', views.date, name="date")
 ]
