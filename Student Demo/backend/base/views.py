@@ -5,11 +5,13 @@ from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
+# Index.html related logic
 def hello(request):
     query = Musician.objects.all()
     context = {"querys":query}    
     return render(request, 'index.html',context)
 
+# Famous.Html related Code
 def hi(request):
     # query = Album.objects.get(id = id)
     if request.user.is_authenticated:
@@ -23,6 +25,7 @@ def hi(request):
             return redirect('home')
     return render(request, 'famous.html')
 
+# Data.html related Logic
 def viewdata(request,id):
     query = Musician.objects.get(id = id)
     if request.method == "POST":
@@ -37,11 +40,12 @@ def viewdata(request,id):
 
     return render(request,'data.html',{"data":query})
 
+# Showdata.html related Logic
 def showdata(request,id):
     query = Musician.objects.get(id = id)
     return render(request,'showdata.html',{"data":query})
 
-
+# Delete the user related loginc
 def delete(request,id):
     data = Musician.objects.get(id = id)
     data.delete()
