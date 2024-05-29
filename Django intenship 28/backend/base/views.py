@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Question, Choice
 
@@ -29,7 +29,7 @@ def create(request):
 
 # Update existing Question and Choice
 def update(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+    question =Question.objects.get(id=question_id)
     choices = Choice.objects.filter(question=question)
     if request.method == "POST":
         question.question_text = request.POST['question_text']
@@ -52,7 +52,7 @@ def update(request, question_id):
 
 # Delete Question and related Choices
 def delete(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
+    question = Question.objects.all(pk=question_id)
     if request.method == "POST":
         question.delete()
         return redirect('index')
